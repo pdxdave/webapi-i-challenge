@@ -66,3 +66,22 @@ server.put('/api/users/:id', (req, res) => {
         res.status(code).json({err: message})
     })
 })
+
+
+// FIND by Id
+server.get('/api/users/:id', (req, res) => {
+    const {id} = req.params
+    
+    db.findById(id)
+    .then(findUser => {
+        res.json(findUser)
+    })
+    .catch(({code, message}) => {
+        res.status(code).json({err: message})
+    })
+})
+
+
+server.listen(5000, () => {
+    console.log('Server is running on port 5000')
+})
